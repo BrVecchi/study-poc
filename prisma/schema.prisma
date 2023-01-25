@@ -1,0 +1,24 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model dishes {
+  id        Int      @id @default(autoincrement())
+  name      String
+  wine_id   Int
+  createdAt DateTime @default(now()) @db.Timestamp(6)
+  wine     wines    @relation(fields: [wine_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model wines {
+  id        Int      @id @default(autoincrement())
+  type      String
+  body      String
+  createdAt DateTime @default(now()) @db.Timestamp(6)
+  dishes    dishes[]
+}

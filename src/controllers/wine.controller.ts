@@ -4,7 +4,7 @@ import { findMany } from '../repositories/wine.repositories.js';
 
 export async function listAllWines(req: Request, res: Response) {
     try {
-        const result = (await findMany()).rows
+        const result = (await findMany())
         res.status(200).send(result)
     } catch (error) {
         console.log(error)
