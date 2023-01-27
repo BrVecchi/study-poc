@@ -12,7 +12,7 @@ model dishes {
   name      String
   wine_id   Int
   createdAt DateTime @default(now()) @db.Timestamp(6)
-  wine     wines    @relation(fields: [wine_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  wines     wines    @relation(fields: [wine_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
 }
 
 model wines {
