@@ -4,6 +4,7 @@ import express, { Request, Response } from 'express';
 
 import { dishRouter } from './routes/dishes.routes.js';
 import { harmonizationRouter } from './routes/harmonization.routes.js';
+import { labelRouter } from './routes/labels.routes.js';
 import { wineRouter } from './routes/wines.routes.js';
 
 dotenv.config();
@@ -14,6 +15,7 @@ server.use(cors());
 server.use(harmonizationRouter)
 server.use(dishRouter)
 server.use(wineRouter)
+server.use(labelRouter)
 
 server.get("/health", (_req: Request, res: Response) => res.send("ok"));
 

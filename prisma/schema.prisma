@@ -12,7 +12,7 @@ model dishes {
   name      String
   wine_id   Int
   createdAt DateTime @default(now()) @db.Timestamp(6)
-  wines     wines    @relation(fields: [wine_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  wines      wines    @relation(fields: [wine_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
 }
 
 model wines {
@@ -20,5 +20,14 @@ model wines {
   type      String
   body      String
   createdAt DateTime @default(now()) @db.Timestamp(6)
+  label_id  Int
   dishes    dishes[]
+  labels     labels   @relation(fields: [label_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model labels {
+  id        Int      @id @default(autoincrement())
+  name      String
+  createdAt DateTime @default(now()) @db.Timestamp(6)
+  wines     wines[]
 }

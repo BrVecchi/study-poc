@@ -7,7 +7,7 @@ export async function findMany(): Promise<
 > {
   return await prisma.dishes.findMany({
     include: {
-      wines: true,
+      wines: true 
     },
   });
 }
