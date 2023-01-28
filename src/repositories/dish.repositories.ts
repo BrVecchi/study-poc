@@ -1,13 +1,18 @@
 import prisma from '../database/db.js';
 import { dish, dishEntity, newDish } from '../protocols/dish.protocol.js';
+import { labelEntity } from '../protocols/label.protocol.js';
 import { wineEntity } from '../protocols/wine.protocol.js';
 
 export async function findMany(): Promise<
-  (dishEntity & { wines: wineEntity })[]
+  (dishEntity & { wines: wineEntity & {labels: labelEntity} } )[]
 > {
   return await prisma.dishes.findMany({
     include: {
-      wines: true 
+      wines: {
+        include: {
+          labels: true
+        }
+      }
     },
   });
 }
